@@ -39,6 +39,7 @@ jobs:
         run: |
           ls -la
           echo "svsvd" > ./5
+          echo "svsvd" > ./6
 
       - uses: tapclap/s3-cache-action/save@main
         name: save
@@ -50,4 +51,8 @@ jobs:
           cache-list-keys: |
             - key: lalka/5
               path: ./5
+            - key: lalka/6
+              path: ./6
+            - key: lalka/7
+              path: ./7
 
