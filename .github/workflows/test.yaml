@@ -7,17 +7,40 @@ on:
     branches:
       - main
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  stage1:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@main
-      # - name: create files
-      #   run: |
-      #     echo "test" > ./1
-      #     echo "test2" > ./2
-      #     mkdir -p test/a
-      #     echo "aaa" > test/a/1
-      #     echo "bbb" > test/a/2
+      - name: create files
+        run: |
+          echo "test" > ./1
+          echo "test2" > ./2
+          mkdir -p test/a
+          echo "aaa" > test/a/1
+          echo "bbb" > test/a/2
+
+          ls -la 
+
+      - uses: tapclap/s3-cache-action/save@main
+        name: restore
+        with:
+          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
+          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
+          region: ${{ vars.S3_CACHE_REGION }}
+          bucket: ${{ vars.S3_CACHE_BUCKET }}
+          cache-list-keys: |
+            - key: lalka/1
+              path: ./1
+            - key: lalka/2
+              path: ./2
+            - key: lalka/test
+              path: ./test
+
+  stage2:
+    runs-on: macos-latest
+    needs: stage1
+    steps:
+      - uses: actions/checkout@main
 
       - uses: tapclap/s3-cache-action/restore@main
         name: restore
@@ -27,46 +50,15 @@ jobs:
           region: ${{ vars.S3_CACHE_REGION }}
           bucket: ${{ vars.S3_CACHE_BUCKET }}
           cache-list-keys: |
-            - key: lalka/4
+            - key: lalka/1
               path: ./1
             - key: lalka/2
               path: ./2
-            - key: lalka/3
-              path: ./test
-            - key: lalka/5
-              path: ./5
-            - key: lalka/6
-              path: ./6
-            - key: lalka/7
-              path: ./7
-            - key: lalka/8
-              path: ./8
 
       - name: check
         shell: bash
         run: |
           ls -la
-          echo "svsvd" > ./5
-          echo "svsvd" > ./6
-          mkdir -p 7
-
-
-      - uses: tapclap/s3-cache-action/save@main
-        name: save
-        with:
-          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
-          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
-          region: ${{ vars.S3_CACHE_REGION }}
-          bucket: ${{ vars.S3_CACHE_BUCKET }}
-          cache-list-keys: |
-            - key: lalka/5
-              path: ./5
-            - key: lalka/6
-              path: ./6
-            - key: lalka/7
-              path: ./7
-            - key: lalka/8
-              path: ./8
 
 
 
