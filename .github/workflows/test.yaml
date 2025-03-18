@@ -38,6 +38,7 @@ jobs:
           ls -la
           echo "svsvd" > ./5
           echo "svsvd" > ./6
+          mkdir -p 7
 
       - uses: tapclap/s3-cache-action/save@main
         name: save
@@ -53,4 +54,6 @@ jobs:
               path: ./6
             - key: lalka/7
               path: ./7
+            - key: lalka/8
+              path: ./8
 
