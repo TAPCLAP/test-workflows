@@ -1,0 +1,37 @@
+name: build main action
+concurrency:
+  group: build-main-action
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: test
+        run: |
+          echo "test" > ./1
+          echo "test2" > ./2
+          mkdir -p test/a
+          echo "aaa" > test/a/1
+          echo "bbb" > test/a/2
+      - uses: tapclap/s3-cache-action/save@main
+        name: build cache artifact
+        id: build-cache-artifact
+        with:
+          path: build.tar
+          key: build-cache-artifact-blabla
+          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
+          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
+          use-fallback: false
+          region: ${{ vars.S3_CACHE_REGION }}
+          bucket: ${{ vars.S3_CACHE_BUCKET }}
+          cache-list-keys: |
+            - key: lalka/1
+              path: ./1
+            - key: lalka/2
+              path: ./2
+            - key: lalka/3
+              path: ./test
