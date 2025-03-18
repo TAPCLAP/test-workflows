@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - name: create files
+        shell: bash
         run: |
           echo "test" > ./1
           echo "test2" > ./2
