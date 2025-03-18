@@ -17,11 +17,6 @@ jobs:
           mkdir -p test/a
           echo "aaa" > test/a/1
           echo "bbb" > test/a/2
-          
-      - uses: tapclap/s3-cache-action/test-action@main
-        name: test
-        with:
-          test: sdvdsvsdvhsdvbhsdv1111222
 
       - uses: tapclap/s3-cache-action/save@main
         name: build cache artifact
