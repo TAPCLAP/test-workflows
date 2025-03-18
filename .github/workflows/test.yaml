@@ -1,6 +1,6 @@
-name: build main action
+name: test
 concurrency:
-  group: build-main-action
+  group: test
 on:
   push:
     branches:
@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - name: create files
-        run: |
-          echo "test" > ./1
-          echo "test2" > ./2
-          mkdir -p test/a
-          echo "aaa" > test/a/1
-          echo "bbb" > test/a/2
+      # - name: create files
+      #   run: |
+      #     echo "test" > ./1
+      #     echo "test2" > ./2
+      #     mkdir -p test/a
+      #     echo "aaa" > test/a/1
+      #     echo "bbb" > test/a/2
 
-      - uses: tapclap/s3-cache-action/save@main
+      - uses: tapclap/s3-cache-action/restore@main
         name: build cache artifact
         id: build-cache-artifact
         with:
