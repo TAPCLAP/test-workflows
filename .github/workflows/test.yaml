@@ -7,7 +7,7 @@ on:
       - main
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows
     steps:
       - uses: actions/checkout@main
       # - name: create files
@@ -34,6 +34,7 @@ jobs:
               path: ./test
 
       - name: check
+        shell: bash
         run: |
           ls -la
           echo "svsvd" > ./5
