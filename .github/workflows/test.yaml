@@ -36,7 +36,9 @@ jobs:
               path: ./2
             - key: lalka/3
               path: ./test
-              
+            - key: lalka/4
+              path: ./4
+
       - name: check
         run: |
           ls -la 
