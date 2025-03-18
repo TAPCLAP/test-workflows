@@ -23,7 +23,7 @@ jobs:
           ls -la 
 
       - uses: tapclap/s3-cache-action/save@main
-        name: restore
+        name: save
         with:
           secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
           accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
@@ -31,11 +31,11 @@ jobs:
           bucket: ${{ vars.S3_CACHE_BUCKET }}
           cache-list-keys: |
             - key: lalka/1
-              path: ./1
+              path: .\1
             - key: lalka/2
-              path: ./2
+              path: .\2
             - key: lalka/test
-              path: ./test
+              path: .\test
 
   stage2:
     runs-on: macos-latest
