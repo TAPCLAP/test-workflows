@@ -30,14 +30,13 @@ jobs:
           region: ${{ vars.S3_CACHE_REGION }}
           bucket: ${{ vars.S3_CACHE_BUCKET }}
           cache-list-keys: |
-            - key: lalka/1
+            - key: lalka/4
               path: ./1
             - key: lalka/2
               path: ./2
             - key: lalka/3
               path: ./test
-            - key: lalka/4
-              path: ./4
+
 
       - name: check
         run: |
