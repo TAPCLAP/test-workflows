@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@main
       # - name: create files
@@ -33,6 +33,14 @@ jobs:
               path: ./2
             - key: lalka/3
               path: ./test
+            - key: lalka/5
+              path: ./5
+            - key: lalka/6
+              path: ./6
+            - key: lalka/7
+              path: ./7
+            - key: lalka/8
+              path: ./8
 
       - name: check
         shell: bash
@@ -59,4 +67,7 @@ jobs:
               path: ./7
             - key: lalka/8
               path: ./8
+
+
+
 
