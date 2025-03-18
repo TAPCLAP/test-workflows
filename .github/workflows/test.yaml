@@ -22,11 +22,8 @@ jobs:
         name: build cache artifact
         id: build-cache-artifact
         with:
-          path: build.tar
-          key: build-cache-artifact-blabla
           secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
           accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
-          use-fallback: false
           region: ${{ vars.S3_CACHE_REGION }}
           bucket: ${{ vars.S3_CACHE_BUCKET }}
           cache-list-keys: |
@@ -40,5 +37,17 @@ jobs:
 
       - name: check
         run: |
-          ls -la 
-          find ./test
+          echo "svsvd" > ./5
+
+      - uses: tapclap/s3-cache-action/save@main
+        name: build cache artifact
+        id: build-cache-artifact
+        with:
+          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
+          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
+          region: ${{ vars.S3_CACHE_REGION }}
+          bucket: ${{ vars.S3_CACHE_BUCKET }}
+          cache-list-keys: |
+            - key: lalka/5
+              path: ./5
+
