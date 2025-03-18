@@ -36,6 +36,7 @@ jobs:
 
       - name: check
         run: |
+          ls -la
           echo "svsvd" > ./5
 
       - uses: tapclap/s3-cache-action/save@main
