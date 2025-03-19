@@ -11,6 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
+
+      - uses: tapclap/s3-cache-action/restore@main
+        name: save
+        with:
+          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
+          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
+          region: ${{ vars.S3_CACHE_REGION }}
+          bucket: ${{ vars.S3_CACHE_BUCKET }}
+          cache-list-keys: |
+            - key: lalka/1
+              path: ./1
+            - key: lalka/2
+              path: ./2
+            - key: lalka/test1
+              path: ./test1
+            - key: lalka/test
+              path: ./test
+
       - name: create files
         shell: bash
         run: |
@@ -20,24 +38,7 @@ jobs:
           echo "aaa" > test/a/1
           echo "bbb" > test/a/2
 
-          echo '[{"key": "lalka/1", "path": "./1"}, {"key": "lalka/2", "path": "./2"}, {"key": "lalka/test1", "path": "./test1"}, {"key": "lalka/test", "path": "./test"}]' > cache-list-keys.json
-
       - uses: tapclap/s3-cache-action/save@main
-        name: save
-        with:
-          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
-          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
-          region: ${{ vars.S3_CACHE_REGION }}
-          bucket: ${{ vars.S3_CACHE_BUCKET }}
-          cache-list-keys-file: ./cache-list-keys.json
-
-  stage2:
-    runs-on: macos-latest
-    needs: stage1
-    steps:
-      - uses: actions/checkout@main
-
-      - uses: tapclap/s3-cache-action/restore@main
         name: restore
         with:
           secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
@@ -47,16 +48,11 @@ jobs:
           cache-list-keys: |
             - key: lalka/1
               path: ./1
-            - key: lalka/3
-              path: ./3
             - key: lalka/2
               path: ./2
-
-      - name: check
-        shell: bash
-        run: |
-          ls -la
-
-
+            - key: lalka/test1
+              path: ./test1
+            - key: lalka/test
+              path: ./test
 
 
