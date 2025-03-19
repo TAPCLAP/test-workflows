@@ -30,17 +30,9 @@ jobs:
               path: ./test
 
   stage2:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: stage1
     steps:
-      - name: create files
-        shell: bash
-        run: |
-          mkdir -p ./test/a
-          mkdir -p ./test/b
-          echo "test1" > ./test/a/1
-          echo "test2" > ./test/b/2
-
       - uses: tapclap/s3-cache-action/restore@main
         name: restore
         with:
@@ -53,6 +45,7 @@ jobs:
               path: ./blabla
       
       - name: check
+        shell: bash
         run: |
           ls -la
           find ./
