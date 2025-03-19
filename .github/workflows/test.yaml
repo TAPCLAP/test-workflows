@@ -29,7 +29,18 @@ jobs:
           accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
           region: ${{ vars.S3_CACHE_REGION }}
           bucket: ${{ vars.S3_CACHE_BUCKET }}
-
+          cache-list-keys: |
+           dacdsv
+                  dscdvvsd12120
+                s
+            - key: lalka/1
+              path: ./1
+            - key: lalka/2
+              path: .\2
+            - key: lalka/test1
+              path: .\test1
+            - key: lalka/test
+              path: .\test
 
   stage2:
     runs-on: macos-latest
