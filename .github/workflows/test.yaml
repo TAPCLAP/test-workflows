@@ -32,6 +32,7 @@ jobs:
       - name: check
         run: |
           ls -la
+          cat ./1
 
 
       # - uses: tapclap/s3-cache-action/save@main
