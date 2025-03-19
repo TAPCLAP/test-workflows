@@ -10,16 +10,36 @@ jobs:
   stage1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - name: create files
+        shell: bash
+        run: |
+          mkdir -p ./test/a
+          mkdir -p ./test/b
+          echo "test1" > ./test/a/1
+          echo "test2" > ./test/b/2
 
+      - uses: tapclap/s3-cache-action/save@main
+        name: save
+        with:
+          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
+          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
+          region: ${{ vars.S3_CACHE_REGION }}
+          bucket: ${{ vars.S3_CACHE_BUCKET }}
+          cache-list-keys: |
+            - key: lalka/uthycubyieuavmzehipnquisnhovdfmuibwwbkhhokacffjs
+              path: ./test
 
-      # - name: create files
-      #   shell: bash
-      #   run: |
-      #     mkdir -p ./test/a
-      #     mkdir -p ./test/b
-      #     echo "test1" > ./test/a/1
-      #     echo "test2" > ./test/b/2
+  stage2:
+    runs-on: ubuntu-latest
+    needs: stage1
+    steps:
+      - name: create files
+        shell: bash
+        run: |
+          mkdir -p ./test/a
+          mkdir -p ./test/b
+          echo "test1" > ./test/a/1
+          echo "test2" > ./test/b/2
 
       - uses: tapclap/s3-cache-action/restore@main
         name: restore
@@ -29,30 +49,14 @@ jobs:
           region: ${{ vars.S3_CACHE_REGION }}
           bucket: ${{ vars.S3_CACHE_BUCKET }}
           cache-list-keys: |
-            - key: lalka/kbhhfawcsfznjsaqcopdaokvcgoxpunkqdjwdjjvfhfgnqzr
-              path: ./test
+            - key: lalka/uthycubyieuavmzehipnquisnhovdfmuibwwbkhhokacffjs
+              path: ./blabla
       
       - name: check
         run: |
           ls -la
-          find ./test
+          find ./
 
 
-      # - uses: tapclap/s3-cache-action/save@main
-      #   name: save
-      #   with:
-      #     secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
-      #     accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
-      #     region: ${{ vars.S3_CACHE_REGION }}
-      #     bucket: ${{ vars.S3_CACHE_BUCKET }}
-      #     cache-list-keys: |
-      #       - key: lalka/1
-      #         path: ./1
-      #       - key: lalka/2
-      #         path: ./2
-      #       - key: lalka/test1
-      #         path: ./test1
-      #       - key: lalka/test
-      #         path: ./test
 
 
