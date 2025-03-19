@@ -30,7 +30,7 @@ jobs:
           region: ${{ vars.S3_CACHE_REGION }}
           bucket: ${{ vars.S3_CACHE_BUCKET }}
           cache-list-keys: |
-           dacdsv
+            dacdsv
                   dscdvvsd12120
                 s
             - key: lalka/1
