@@ -31,9 +31,11 @@ jobs:
           bucket: ${{ vars.S3_CACHE_BUCKET }}
           cache-list-keys: |
             - key: lalka/1
-              path: .\1
+              path: ./1
             - key: lalka/2
               path: .\2
+            - key: lalka/test1
+              path: .\test1
             - key: lalka/test
               path: .\test
 
@@ -53,6 +55,8 @@ jobs:
           cache-list-keys: |
             - key: lalka/1
               path: ./1
+            - key: lalka/3
+              path: ./3
             - key: lalka/2
               path: ./2
 
