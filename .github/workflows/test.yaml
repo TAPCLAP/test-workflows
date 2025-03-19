@@ -13,16 +13,16 @@ jobs:
       - uses: actions/checkout@main
 
 
-      - name: create files
-        shell: bash
-        run: |
-          mkdir -p ./test/a
-          mkdir -p ./test/b
-          echo "test1" > ./test/a/1
-          echo "test2" > ./test/b/2
+      # - name: create files
+      #   shell: bash
+      #   run: |
+      #     mkdir -p ./test/a
+      #     mkdir -p ./test/b
+      #     echo "test1" > ./test/a/1
+      #     echo "test2" > ./test/b/2
 
-      - uses: tapclap/s3-cache-action/save@main
-        name: save
+      - uses: tapclap/s3-cache-action/restore@main
+        name: restore
         with:
           secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
           accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
