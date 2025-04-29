@@ -17,6 +17,7 @@ jobs:
           mkdir -p ./test/b
           echo "test1" > ./test/a/1
           echo "test2" > ./test/b/2
+
           
 
       - uses: tapclap/s3-cache-action/test@test
