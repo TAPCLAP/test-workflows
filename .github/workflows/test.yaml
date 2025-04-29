@@ -22,9 +22,9 @@ jobs:
         name: save
         with:
           secretKey: ''
-          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
-          region: ${{ vars.S3_CACHE_REGION }}
-          bucket: ${{ vars.S3_CACHE_BUCKET }}
+          accessKey: ''
+          region: ''
+          bucket: ''
           cache-list-keys: |
             - key: lalka/uthycubyieuavmzehipnquisnhovdfmuibwwbkhhokacffjs
               path: ./test
