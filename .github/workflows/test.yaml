@@ -18,10 +18,10 @@ jobs:
           echo "test1" > ./test/a/1
           echo "test2" > ./test/b/2
 
-      - uses: tapclap/s3-cache-action/save@main
+      - uses: tapclap/s3-cache-action/save@test
         name: save
         with:
-          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
+          secretKey: ''
           accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
           region: ${{ vars.S3_CACHE_REGION }}
           bucket: ${{ vars.S3_CACHE_BUCKET }}
@@ -29,26 +29,7 @@ jobs:
             - key: lalka/uthycubyieuavmzehipnquisnhovdfmuibwwbkhhokacffjs
               path: ./test
 
-  stage2:
-    runs-on: windows-latest
-    needs: stage1
-    steps:
-      - uses: tapclap/s3-cache-action/restore@main
-        name: restore
-        with:
-          secretKey: ${{ secrets.S3_CACHE_ACCESS_KEY }}
-          accessKey: ${{ secrets.S3_CACHE_ACCESS_KEY_ID }}
-          region: ${{ vars.S3_CACHE_REGION }}
-          bucket: ${{ vars.S3_CACHE_BUCKET }}
-          cache-list-keys: |
-            - key: lalka/uthycubyieuavmzehipnquisnhovdfmuibwwbkhhokacffjs
-              path: ./blabla
-      
-      - name: check
-        shell: bash
-        run: |
-          ls -la
-          find ./
+
 
 
 
