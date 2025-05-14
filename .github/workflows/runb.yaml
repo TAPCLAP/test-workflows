@@ -12,7 +12,7 @@ jobs:
       - name: hello
         shell: bash
         run: |
-          hello
+          echo "rub b"
 
 
 
