@@ -25,4 +25,3 @@ jobs:
           workflows: |
             - ruba.yaml
             - rubb.yaml
-
