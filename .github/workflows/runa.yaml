@@ -9,11 +9,13 @@ jobs:
   stage1:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@main
       - name: hello
         shell: bash
         run: |
           echo "runa"
-          echo "ref: ${{github.reg}}"
+          echo "ref: ${{github.ref}}"
 
 
 
