@@ -10,11 +10,11 @@ jobs:
   stage1:
     runs-on: ubuntu-latest
     steps:
-      - name: Install GitHub CLI
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gh
+      # - name: Install GitHub CLI
+      #   shell: bash
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y gh
 
       - uses: tapclap/hook-workflow-action@main
         name: save
@@ -23,4 +23,5 @@ jobs:
           workflows: |
             - runa.yaml
             - runb.yaml
+
 
