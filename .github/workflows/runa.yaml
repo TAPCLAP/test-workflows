@@ -13,6 +13,7 @@ jobs:
         shell: bash
         run: |
           echo "runa"
+          echo "ref: ${{github.reg}}"
 
 
 
