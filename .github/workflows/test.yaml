@@ -18,11 +18,12 @@ jobs:
           echo "test1" > ./test/a/1
           echo "test2" > ./test/b/2
 
-      # - uses: tapclap/hook-workflow-action@main
-      #   name: save
-      #   with:
-
-
-
+      - uses: tapclap/hook-workflow-action@main
+        name: save
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflows: |
+            - ruba.yaml
+            - rubb.yaml
 
 
