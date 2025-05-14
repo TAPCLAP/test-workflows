@@ -23,5 +23,3 @@ jobs:
           workflows: |
             - runa.yaml
             - runb.yaml
-
-
