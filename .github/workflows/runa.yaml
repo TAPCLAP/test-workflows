@@ -1,7 +1,7 @@
 name: runa
-concurrency:
-  group: runa
-  cancel-in-progress: true
+# concurrency:
+#   group: runa
+#   cancel-in-progress: true
 on:
   workflow_dispatch:
 
