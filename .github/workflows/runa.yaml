@@ -1,0 +1,18 @@
+name: runa
+concurrency:
+  group: runa
+  cancel-in-progress: true
+on:
+  workflow_dispatch:
+
+jobs:
+  stage1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello
+        shell: bash
+        run: |
+          hello
+
+
+

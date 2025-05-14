@@ -18,17 +18,9 @@ jobs:
           echo "test1" > ./test/a/1
           echo "test2" > ./test/b/2
 
-      - uses: tapclap/s3-cache-action/test@test
-        name: save
-        with:
-          secretKey: ''
-          accessKey: ''
-          region: ''
-          bucket: ''
-          cache-list-keys: |
-            - key: lalka/uthycubyieuavmzehipnquisnhovdfmuibwwbkhhokacffjs
-              path: ./test
-
+      # - uses: tapclap/hook-workflow-action@main
+      #   name: save
+      #   with:
 
 
 
