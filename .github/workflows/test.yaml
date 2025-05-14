@@ -23,3 +23,20 @@ jobs:
           workflows: |
             - runa.yaml
             - runb.yaml
+
+      - uses: tapclap/hook-workflow-action@main
+        name: run workflows json 1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflows: |
+            [
+              "runa.yaml",
+              "runb.yaml"
+            ]
+
+      - uses: tapclap/hook-workflow-action@main
+        name: run workflows json 2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflows: '["runa.yaml","runb.yaml"]'
+
