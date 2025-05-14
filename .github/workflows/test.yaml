@@ -17,7 +17,7 @@ jobs:
       #     sudo apt-get install -y gh
 
       - uses: tapclap/hook-workflow-action@main
-        name: save
+        name: run workflows
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflows: |
