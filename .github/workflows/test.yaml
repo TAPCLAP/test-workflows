@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   stage1:
-    runs-on: [builder131-1-0]
+    runs-on: [self-hosted, linux, builder131-1]
     steps:
       # - name: Install GitHub CLI
       #   shell: bash
