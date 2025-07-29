@@ -3,6 +3,8 @@ concurrency:
   group: test
   cancel-in-progress: true
 on:
+  workflow_dispatch:
+    
   push:
     branches:
       - main
