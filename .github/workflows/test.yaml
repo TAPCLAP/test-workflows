@@ -8,35 +8,32 @@ on:
       - main
 jobs:
   stage1:
-    runs-on: [self-hosted, linux, builder131-1]
+    runs-on: [self-hosted, linux, docker]
     steps:
-      # - name: Install GitHub CLI
-      #   shell: bash
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y gh
+      - name: checkout
+        uses: actions/checkout@main
 
-      - uses: tapclap/hook-workflow-action@main
-        name: run workflows
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          workflows: |
-            - runa.yaml
-            - runb.yaml
+      # - uses: tapclap/hook-workflow-action@main
+      #   name: run workflows
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     workflows: |
+      #       - runa.yaml
+      #       - runb.yaml
 
-      - uses: tapclap/hook-workflow-action@main
-        name: run workflows json 1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          workflows: |
-            [
-              "runa.yaml",
-              "runb.yaml"
-            ]
+      # - uses: tapclap/hook-workflow-action@main
+      #   name: run workflows json 1
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     workflows: |
+      #       [
+      #         "runa.yaml",
+      #         "runb.yaml"
+      #       ]
 
-      - uses: tapclap/hook-workflow-action@main
-        name: run workflows json 2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          workflows: '["runa.yaml","runb.yaml"]'
+      # - uses: tapclap/hook-workflow-action@main
+      #   name: run workflows json 2
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     workflows: '["runa.yaml","runb.yaml"]'
 
