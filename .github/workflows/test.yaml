@@ -10,7 +10,7 @@ on:
       - main
 jobs:
   stage1:
-    runs-on: [self-hosted, Linux, docker]
+    runs-on: [self-hosted, docker, linux]
     steps:
       - name: checkout
         uses: actions/checkout@main
